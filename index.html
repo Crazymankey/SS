@@ -4,13 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>姐生日快樂</title>
-#fireworks-bg {
-position: fixed;
-top: 0; left: 0;
-width: 100%; height: 100%;
-pointer-events: none;
-z-index: 0;
-}<style>
+#fireworks-bg 
+  <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
 
   :root{
@@ -572,40 +567,5 @@ z-index: 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 </script>
-
-const fwCanvas = document.getElementById('fireworks-bg');
-const fwCtx = fwCanvas.getContext('2d');
-const fwParticles = [];
-const fwRockets = [];
-function fwResize(){fwCanvas.width=window.innerWidth;fwCanvas.height=window.innerHeight;}
-fwResize();
-window.addEventListener('resize',fwResize);
-function fwColor(){const c=['#ff5252','#ffd740','#40c4ff','#69f0ae','#e040fb','#ff6e40','#fff'];return c[Math.floor(Math.random()*c.length)];}
-function spawnRocket(){if(Math.random()<0.05){fwRockets.push({x:Math.random()*fwCanvas.width,y:fwCanvas.height,ty:Math.random()*fwCanvas.height*0.4+fwCanvas.height*0.1,speed:Math.random()*3+6,color:fwColor(),trail:[]});}}
-function explode(x,y,color){for(let i=0;i<80;i++){const a=Math.random()*Math.PI*2,s=Math.random()*5+1;fwParticles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,alpha:1,color,decay:Math.random()*0.015+0.01,size:Math.random()*2+1});}}
-function fwLoop(){
-fwCtx.fillStyle='rgba(0,0,0,0)';
-fwCtx.clearRect(0,0,fwCanvas.width,fwCanvas.height);
-spawnRocket();
-for(let i=fwRockets.length-1;i>=0;i--){
-const r=fwRockets[i];
-r.trail.push({x:r.x,y:r.y});
-if(r.trail.length>8)r.trail.shift();
-r.y-=r.speed;
-fwCtx.strokeStyle=r.color;fwCtx.lineWidth=2;fwCtx.beginPath();
-r.trail.forEach((p,idx)=>{idx===0?fwCtx.moveTo(p.x,p.y):fwCtx.lineTo(p.x,p.y);});
-fwCtx.stroke();
-if(r.y<=r.ty){explode(r.x,r.y,r.color);fwRockets.splice(i,1);}
-}
-for(let i=fwParticles.length-1;i>=0;i--){
-const p=fwParticles[i];
-p.vy+=0.05;p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;p.alpha-=p.decay;
-fwCtx.globalAlpha=Math.max(p.alpha,0);fwCtx.fillStyle=p.color;
-fwCtx.beginPath();fwCtx.arc(p.x,p.y,p.size,0,Math.PI*2);fwCtx.fill();
-if(p.alpha<=0)fwParticles.splice(i,1);
-}
-fwCtx.globalAlpha=1;
-requestAnimationFrame(fwLoop);
-}
-fwLoop();</body>
+</body>
 </html>
