@@ -376,7 +376,19 @@
     .about-box{ padding:40px 24px; }
     .stage{ padding:20px 20px; }
   }
-</style>
+#bg-fireworks{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+z-index:0;
+pointer-events:none;
+background:transparent;
+}
+.hero, section, footer, .surprise-overlay{
+position:relative;
+z-index:1;
+}</style>
 </head>
 <body>
 <canvas id="bg-fireworks"></canvas>
@@ -410,35 +422,35 @@
         <div class="stage-num">01</div>
         <div class="stage-body">
           <h3>初識期</h3>
-          <p>剛開始認識的階段，一切都還在摸索，但姐已經默默在旁邊留意著。</p>
+          <p>一個無意間的臉書好友請求，讓我認識了姐。姐把她介紹給我，我才知道，那個點擊改變了我的一生。</p>
         </div>
       </div>
       <div class="stage">
         <div class="stage-num">02</div>
         <div class="stage-body">
           <h3>混亂期</h3>
-          <p>方向還不清楚、腳步有點亂，是姐在混亂中拉了一把，讓一切慢慢有了頭緒。</p>
+          <p>那時候太想回應姐的期待，卻忘了問自己真正想要什麼。方向不清楚，腳步就亂了。</p>
         </div>
       </div>
       <div class="stage">
         <div class="stage-num">03</div>
         <div class="stage-body">
           <h3>分手期</h3>
-          <p>曾經一度想放棄、想分開，也是姐沒有放手，才讓這段路沒有在這裡結束。</p>
+          <p>急著在一起，卻還沒真正了解彼此。那段分開，是痛的，但也是必要的。</p>
         </div>
       </div>
       <div class="stage">
         <div class="stage-num">04</div>
         <div class="stage-body">
           <h3>複合期</h3>
-          <p>重新走在一起，帶著之前的經驗，這次姐推得更用力，也走得更堅定。</p>
+          <p>沒有刻意，緣分就悄悄把我們牽回來了。這一次，走得更穩。</p>
         </div>
       </div>
       <div class="stage">
         <div class="stage-num">05</div>
         <div class="stage-body">
           <h3>修成期</h3>
-          <p>終於修成正果，走到今天的苙僑，每一步都有姐的推一把。</p>
+          <p>現在結婚了。彼此都有彼此。這一切，從姐的那個介紹開始。</p>
         </div>
       </div>
     </div>
@@ -679,19 +691,7 @@ bgFireworksLoop(); // 立即啟動，永久運作，不會停const fadeEls = doc
     fireworkParticles = [];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-bg-fireworks{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-    pointer-events:none;
-    background:#0a0a1a;
-  }
-  .hero, section, footer, .surprise-overlay{
-    position:relative;
-    z-index:1;
-  }
+
 </script>
 
 </body>
